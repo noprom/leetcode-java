@@ -1,7 +1,5 @@
 package com.huntdreams.TwoSum;
 
-import com.sun.tools.corba.se.idl.InterfaceGen;
-
 import java.util.HashMap;
 
 /**
