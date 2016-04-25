@@ -33,17 +33,27 @@ public class Solution {
         // 2. O(n) 算法,先用一个hashmap存放另一个数的结果和索引;
         // 然后遍历查找,hashmap<nums中的数字,索引>
 
+//        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+//        // 首先初始化map
+//        for (int i = 0; i < nums.length; i++) {
+//            map.put(target - nums[i], i);
+//        }
+//        // 然后遍历nums查找
+//        for (int i = 0; i < nums.length; i++) {
+//            Integer index = map.get(nums[i]);
+//            if (index != null && index != i) {
+//                return new int[]{i, index};
+//            }
+//        }
+//        throw new RuntimeException();
+        // 3. O(n) 算法,可以边找遍插入
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        // 首先初始化map
         for (int i = 0; i < nums.length; i++) {
-            map.put(target - nums[i], i);
-        }
-        // 然后遍历nums查找
-        for (int i = 0; i < nums.length; i++) {
-            Integer index = map.get(nums[i]);
-            if (index != null && index != i) {
-                return new int[]{i, index};
+            Integer complement = target - nums[i];
+            if (map.containsKey(complement) && map.get(complement) != i) {
+                return new int[]{map.get(complement), i};
             }
+            map.put(nums[i], i);
         }
         throw new RuntimeException();
     }
